@@ -16,6 +16,7 @@ public class PersonServices {
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
     public List<Person> findeAll(){
+        logger.info("Finding all people!");
         List<Person> persons = new ArrayList<Person>();
 
         for(int i = 0; i < 8; i++){
@@ -28,7 +29,7 @@ public class PersonServices {
 
     public Person findeById(String id){
 
-        logger.info("Finding one person!");
+        logger.info("Finding one person!");//para acompanhar o que está acontecendo no sistema e perceber falhas.
 
         //Ponto em que acessaceremos o banco de dados para buscar a pessoa pelo id, mas como não temos um banco de dados, vamos criar uma pessoa fictícia.
         Person person = new Person();
@@ -38,6 +39,20 @@ public class PersonServices {
         person.setAddress("Rua 2, 35R, London, UK");
         person.setGender("Male");
         return person;
+    }
+
+    public Person create(Person person){
+        logger.info("Creating one person!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
+        return person;
+    }
+
+    public Person update(Person person){
+        logger.info("Updating one person!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
+        return person;
+    }
+
+    public void delete(String id){
+        logger.info("Deleting one person!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
     }
 
 
