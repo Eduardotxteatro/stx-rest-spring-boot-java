@@ -14,3 +14,8 @@ spring:
     show-sql: false
     
     open-in-view: false
+
+logging:
+  level:
+    #root: WARN
+    Eduardotxteatro: DEBUG
