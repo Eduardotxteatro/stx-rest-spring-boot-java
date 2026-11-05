@@ -3,8 +3,6 @@ package com.github.Eduardotxteatro.model;
 
 
 import java.io.Serializable;
-import java.util.Objects;
-
 import jakarta.persistence.*;
 
 
