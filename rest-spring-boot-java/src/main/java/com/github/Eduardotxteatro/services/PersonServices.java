@@ -7,7 +7,10 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.Eduardotxteatro.data.dto.PersonDTO;
 import com.github.Eduardotxteatro.exception.ResourceNotFoundException;
+import static com.github.Eduardotxteatro.mapper.ObjectMapper.parseListObjects;
+import static com.github.Eduardotxteatro.mapper.ObjectMapper.parseObject;
 import com.github.Eduardotxteatro.model.Person;
 import com.github.Eduardotxteatro.repository.PersonRepository;
 
@@ -23,27 +26,31 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;   
 
-    public List<Person> findeAll(){
+    public List<PersonDTO> findeAll(){
         logger.info("Finding all people!");
 
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findeById(Long id){
+    public PersonDTO findeById(Long id){
 
         logger.info("Finding one person!");//para acompanhar o que está acontecendo no sistema e perceber falhas.
 
-        return repository.findById(id)
+        var entity = repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Person not found with id " + id));
+        
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person){
+    public PersonDTO create(Person person){
         logger.info("Creating one person!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
         
-        return repository.save(person);
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person){
+    public PersonDTO update(Person person){
         logger.info("Updating one person!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
         
         Person entity = repository.findById(person.getId())
@@ -53,7 +60,8 @@ public class PersonServices {
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return repository.save(entity);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id){

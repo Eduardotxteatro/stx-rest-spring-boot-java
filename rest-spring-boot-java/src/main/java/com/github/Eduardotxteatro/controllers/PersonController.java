@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.Eduardotxteatro.data.dto.PersonDTO;
 import com.github.Eduardotxteatro.model.Person;
 import com.github.Eduardotxteatro.services.PersonServices;
 
@@ -26,23 +26,23 @@ public class PersonController {
     private PersonServices services;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findeAll(){
+    public List<PersonDTO> findeAll(){
         return services.findeAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findeById(@PathVariable("id") Long id){
+    public PersonDTO findeById(@PathVariable("id") Long id){
         return services.findeById(id);
         
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person){
+    public PersonDTO create(@RequestBody Person person){
         return services.create(person);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person){
+    public PersonDTO update(@RequestBody Person person){
         return services.update(person);
     }
 
