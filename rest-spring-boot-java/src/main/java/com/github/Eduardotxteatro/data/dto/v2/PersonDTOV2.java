@@ -1,12 +1,12 @@
-package com.github.Eduardotxteatro.data.dto;
-
+package com.github.Eduardotxteatro.data.dto.v2;
 
 
 import java.io.Serializable;
+import java.util.*;;
 
 
 
-public class PersonDTO implements Serializable{
+public class PersonDTOV2 implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -14,10 +14,11 @@ public class PersonDTO implements Serializable{
     private Long id;
     private String firstName;
     private String lastName;
+    private Date birthday;
     private String address;
     private String gender;
     
-    public PersonDTO() {}
+    public PersonDTOV2() {}
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -45,6 +46,14 @@ public class PersonDTO implements Serializable{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }   
+   
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getAddress() {
@@ -70,6 +79,7 @@ public class PersonDTO implements Serializable{
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
         return result;
@@ -83,7 +93,7 @@ public class PersonDTO implements Serializable{
             return false;
         if (getClass() != obj.getClass())
             return false;
-        PersonDTO other = (PersonDTO) obj;
+        PersonDTOV2 other = (PersonDTOV2) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -99,6 +109,11 @@ public class PersonDTO implements Serializable{
                 return false;
         } else if (!lastName.equals(other.lastName))
             return false;
+        if (birthday == null) {
+            if (other.birthday != null)
+                return false;
+        } else if (!birthday.equals(other.birthday))
+            return false;
         if (address == null) {
             if (other.address != null)
                 return false;
@@ -110,10 +125,8 @@ public class PersonDTO implements Serializable{
         } else if (!gender.equals(other.gender))
             return false;
         return true;
-    }  
-    
-    
+    }
 
-
-    
+     
 }
+

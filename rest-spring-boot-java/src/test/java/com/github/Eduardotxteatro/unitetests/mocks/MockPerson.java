@@ -3,7 +3,7 @@ package com.github.Eduardotxteatro.unitetests.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.Eduardotxteatro.data.dto.PersonDTO;
+import com.github.Eduardotxteatro.data.dto.v1.PersonDTO;
 import com.github.Eduardotxteatro.model.Person;
 
 public class MockPerson {

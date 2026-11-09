@@ -8,8 +8,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.github.Eduardotxteatro.data.dto.v1.PersonDTO;
 import com.github.Eduardotxteatro.mapper.ObjectMapper;
-import com.github.Eduardotxteatro.data.dto.PersonDTO;
 import com.github.Eduardotxteatro.model.Person;
 import com.github.Eduardotxteatro.unitetests.mocks.MockPerson;
 

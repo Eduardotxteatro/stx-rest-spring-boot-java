@@ -7,8 +7,11 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.Eduardotxteatro.data.dto.PersonDTO;
+import com.github.Eduardotxteatro.data.dto.v1.PersonDTO;
+import com.github.Eduardotxteatro.data.dto.v2.PersonDTOV2;
 import com.github.Eduardotxteatro.exception.ResourceNotFoundException;
+import com.github.Eduardotxteatro.mapper.custom.PersonMapper;
+
 import static com.github.Eduardotxteatro.mapper.ObjectMapper.parseListObjects;
 import static com.github.Eduardotxteatro.mapper.ObjectMapper.parseObject;
 import com.github.Eduardotxteatro.model.Person;
@@ -24,7 +27,10 @@ public class PersonServices {
     private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
-    PersonRepository repository;   
+    PersonRepository repository;
+    
+    @Autowired
+    PersonMapper converter;  
 
     public List<PersonDTO> findeAll(){
         logger.info("Finding all people!");
@@ -48,6 +54,14 @@ public class PersonServices {
         var entity = parseObject(person, Person.class);
 
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person){
+        logger.info("Creating one person V2!"); //para acompanhar o que está acontecendo no sistema e perceber falhas.
+        
+        var entity = converter.convertDTOtoEntity(person);
+
+        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(Person person){

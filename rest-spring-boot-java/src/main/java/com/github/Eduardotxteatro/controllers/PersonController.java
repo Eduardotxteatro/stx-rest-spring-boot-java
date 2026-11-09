@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.Eduardotxteatro.data.dto.PersonDTO;
+import com.github.Eduardotxteatro.data.dto.v1.*;
+import com.github.Eduardotxteatro.data.dto.v2.PersonDTOV2;
 import com.github.Eduardotxteatro.model.Person;
 import com.github.Eduardotxteatro.services.PersonServices;
 
@@ -39,6 +40,14 @@ public class PersonController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public PersonDTO create(@RequestBody Person person){
         return services.create(person);
+    }
+
+    @PostMapping(value = "/v2",
+        produces = MediaType.APPLICATION_JSON_VALUE, 
+        consumes = MediaType.APPLICATION_JSON_VALUE)
+
+    public PersonDTOV2 create(@RequestBody PersonDTOV2 person){
+        return services.createV2(person);
     }
 
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
