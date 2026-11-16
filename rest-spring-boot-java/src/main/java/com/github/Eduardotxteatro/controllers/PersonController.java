@@ -20,7 +20,7 @@ import com.github.Eduardotxteatro.model.Person;
 import com.github.Eduardotxteatro.services.PersonServices;
 
 @RestController
-@RequestMapping("/person") 
+@RequestMapping("/api/person/v1") 
 public class PersonController {
 
     @Autowired
